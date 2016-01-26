@@ -23,6 +23,15 @@ public class Rule
 	{
 		return rightPart;
 	}
+
+    @Override
+    public String toString() {
+        String message="";
+        message+=leftPart.toString();
+        message+=":-";
+        message+=rightPart.toString();
+        return message;
+    }
 	
 	
 	

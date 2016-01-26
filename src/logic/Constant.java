@@ -23,4 +23,11 @@ public class Constant extends Term
 		return true;
 	}
 
+        @Override
+        public String toString() {
+            return nameOfConstnat;
+        }
+
+        
+
 }

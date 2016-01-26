@@ -24,6 +24,18 @@ public class Relation
 	{
 		arguments.add(argument);
 	}
+
+    @Override
+    public String toString() {
+        String message="";
+        message+=nameOfRelation;
+        message+="(";
+        for (Term argument : arguments) {
+            message+=argument.toString()+",";
+        }
+         message+=")";
+         return message;
+    }
 	
 	
 	

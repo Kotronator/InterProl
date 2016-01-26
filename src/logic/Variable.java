@@ -21,6 +21,13 @@ public class Variable extends Term
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+    @Override
+    public String toString() {
+        return nameOfVariable;
+    }
+        
+        
 	
 	
 

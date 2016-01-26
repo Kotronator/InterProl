@@ -81,16 +81,19 @@ public class PrologParser
                         //////////////////////////////
                         //deksio komati
                         /////////////////////////////
-                        String[] parts = rightPartString.split("(),\\s*)");//[),]");
-                        for (int i = 0; i < parts.length; i++) {
+                        String[] parts = rightPartString.split("\\)\\,");
+                        int i;
+                        for (i = 0; i < parts.length-1; i++) {
+                            parts[i]+=")";
                             System.out.println("part"+ parts[i]);
                             
                         }
+                        System.out.println("part"+ parts[i]);
                         StringTokenizer relationsTokenizer = new StringTokenizer(rightPartString,"(),)");
-                        while(relationsTokenizer.hasMoreTokens()) 
-                            
+                        //while(relationsTokenizer.hasMoreTokens()) 
+                        for (int j = 0; j < parts.length; j++)
                         {
-                            String relation = relationsTokenizer.nextToken();
+                            String relation = parts[j];// relationsTokenizer.nextToken();
                             System.out.println("rel"+relation);
                             firstPar = relation.indexOf("(");
                             lastPar = relation.indexOf(")");

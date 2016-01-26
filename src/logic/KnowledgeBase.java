@@ -48,6 +48,7 @@ public class KnowledgeBase
         for (Fact fact : facts) 
         {
             message += fact.toString();
+            message +="\n";
         }
         
         message += "\n";
@@ -55,6 +56,7 @@ public class KnowledgeBase
         for (Rule rule : rules) 
         {
             message += rule.toString();
+            message +="\n";
         }
         return message;
     }
