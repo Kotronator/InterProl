@@ -14,12 +14,12 @@ import java.util.ArrayList;
 public class KnowledgeBase 
 {
     ArrayList<Rule> rules;
-    ArrayList<Fact> facts;
+    ArrayList<Relation> facts;
     
     public KnowledgeBase()
     {
         rules = new ArrayList<Rule>();
-        facts = new ArrayList<Fact>();
+        facts = new ArrayList<Relation>();
     }
     
     public void addRule(Rule rule)
@@ -27,15 +27,15 @@ public class KnowledgeBase
         rules.add(rule);
     }
     
-    public void addFact(Fact fact)
+    public void addFact(Relation fact)
     {
         facts.add(fact);
     }
     
     public void add(Object o)
     {
-        if(o instanceof Fact)
-            facts.add((Fact)o);
+        if(o instanceof Relation)
+            facts.add((Relation)o);
         else if(o instanceof Rule)
             rules.add((Rule)o);
         
@@ -45,7 +45,7 @@ public class KnowledgeBase
     public String toString() 
     {
         String message = "";
-        for (Fact fact : facts) 
+        for (Relation fact : facts) 
         {
             message += fact.toString();
             message +="\n";

@@ -29,7 +29,10 @@ public class Rule
         String message="";
         message+=leftPart.toString();
         message+=":-";
-        message+=rightPart.toString();
+        for (Relation rightPart1 : rightPart) {
+             message+=rightPart1.toString();
+        }
+       
         return message;
     }
 	

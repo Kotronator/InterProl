@@ -28,7 +28,9 @@ public class Variable extends Term
     }
         
         
-	
-	
+    @Override
+    public boolean isCompound() {
+        return false;
+    }
 
 }

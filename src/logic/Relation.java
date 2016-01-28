@@ -2,7 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 
-public class Relation 
+public class Relation extends Term
 {
 	
 	public String nameOfRelation;
@@ -35,6 +35,27 @@ public class Relation
         }
          message+=")";
          return message;
+    }
+
+    @Override
+    public String getName() {
+        return nameOfRelation;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isConstant() {
+        
+        for (Term argument : arguments) {
+            if(!argument.isConstant())
+                return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isCompound() {
+        return true;
     }
 	
 	

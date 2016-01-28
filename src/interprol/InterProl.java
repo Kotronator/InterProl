@@ -5,7 +5,6 @@
  */
 package interprol;
 
-import logic.Fact;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import logic.KnowledgeBase;

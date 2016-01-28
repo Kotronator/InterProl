@@ -5,7 +5,6 @@
  */
 package parser;
 
-import logic.Fact;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,6 +15,7 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import logic.Constant;
 import logic.Relation;
 import logic.Rule;
 import logic.Term;
@@ -43,13 +43,13 @@ public class PrologParser
                     if(command.trim().equals(""))
                         continue;
                     if(command.contains(":-"))
-                    {   System.out.println("mpainwwww");
+                    {   //System.out.println("mpainwwww");
                         StringTokenizer ruleTokenizer = new StringTokenizer(command, ":-");
                         String leftPartString = ruleTokenizer.nextElement().toString();
                         Relation leftPart = null;
                         String rightPartString = ruleTokenizer.nextElement().toString();
-                         System.out.println("leftpartstring = "+leftPartString);
-                        System.out.println("rightpartstring = "+rightPartString);
+                       //  System.out.println("leftpartstring = "+leftPartString);
+                       // System.out.println("rightpartstring = "+rightPartString);
                         ArrayList<Relation> rightPart= new ArrayList<Relation>();
                         //aristero komati
                         int firstPar = leftPartString.indexOf("(");
@@ -85,27 +85,28 @@ public class PrologParser
                         int i;
                         for (i = 0; i < parts.length-1; i++) {
                             parts[i]+=")";
-                            System.out.println("part"+ parts[i]);
+                            //System.out.println("part"+ parts[i]);
                             
                         }
-                        System.out.println("part"+ parts[i]);
-                        StringTokenizer relationsTokenizer = new StringTokenizer(rightPartString,"(),)");
+                       //System.out.println("part"+ parts[i]);
                         //while(relationsTokenizer.hasMoreTokens()) 
                         for (int j = 0; j < parts.length; j++)
                         {
                             String relation = parts[j];// relationsTokenizer.nextToken();
-                            System.out.println("rel"+relation);
                             firstPar = relation.indexOf("(");
                             lastPar = relation.indexOf(")");
-                            StringTokenizer relationVariableTokenizer = new StringTokenizer(relation, ",");
+                            
 
                             String relationName = relation.substring(0, firstPar).trim();
                             variablesString = relation.substring(firstPar+1, lastPar).trim();
-                            System.out.println(variablesString);
+                            StringTokenizer relationVariableTokenizer = new StringTokenizer(variablesString, ",");
+                            //System.out.println(variablesString);
                             ArrayList<Term> relationVariableList = new ArrayList<Term>();
                             while (relationVariableTokenizer.hasMoreElements())
                             {
+                                
                                 String nextElement = relationVariableTokenizer.nextElement().toString();
+                               // System.out.println("nextEl:"+nextElement);
                                 relationVariableList.add(new Variable(nextElement));
                                // System.out.println(argumentList.get(0));
 
@@ -136,21 +137,21 @@ public class PrologParser
                         int lastPar = command.indexOf(")");
                         String factName = command.substring(0, firstPar).trim();
                         String facts = command.substring(firstPar+1, lastPar).trim();
-                        System.out.println(facts);
+                        //System.out.println(facts);
                         StringTokenizer parametersTokenizer = new StringTokenizer(facts, ",");
-                        LinkedList<String> argumentList = new LinkedList<String>();
+                        ArrayList<Term> argumentList = new ArrayList<Term>();
                         while (parametersTokenizer.hasMoreElements())
                         {
                             String nextElement = parametersTokenizer.nextElement().toString();
                             char c = nextElement.charAt(0);
                             Character.isUpperCase(c);
-                            argumentList.add(nextElement);
+                            argumentList.add(new Constant(nextElement));
                            // System.out.println(argumentList.get(0));
 
                         }
                         if(argumentList.size()>0)
                         {
-                          Fact fact= new Fact(factName,argumentList);
+                          Relation fact= new Relation(factName,argumentList);
                           interprol.InterProl.kb.add(fact);
                         }else
                         {

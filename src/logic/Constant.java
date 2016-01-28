@@ -28,6 +28,11 @@ public class Constant extends Term
             return nameOfConstnat;
         }
 
+    @Override
+    public boolean isCompound() {
+        return false;
+    }
+
         
 
 }
