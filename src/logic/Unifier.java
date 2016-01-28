@@ -217,17 +217,17 @@ public class Unifier {
 	private Map<Variable, Term> cascadeSubstitution(Map<Variable, Term> theta, Variable var,
 			Term x) {
 		theta.put(var, x);
-		for (Variable v : theta.keySet()) {
-			theta.put(v, _substVisitor.subst(theta, theta.get(v)));
-		}
-		// Ensure Function Terms are correctly updates by passing over them again
-		// Fix for testBadCascadeSubstitution_LCL418_1()
-		for (Variable v : theta.keySet()) {
-			Term t = theta.get(v);
-			if (t instanceof Relation) {
-				theta.put(v, _substVisitor.subst(theta, t));
-			}
-		}
+//		for (Variable v : theta.keySet()) {
+//			theta.put(v, _substVisitor.subst(theta, theta.get(v)));
+//		}
+//		// Ensure Function Terms are correctly updates by passing over them again
+//		// Fix for testBadCascadeSubstitution_LCL418_1()
+//		for (Variable v : theta.keySet()) {
+//			Term t = theta.get(v);
+//			if (t instanceof Relation) {
+//				theta.put(v, _substVisitor.subst(theta, t));
+//			}
+//		}
 		return theta;
 	}
 } 
