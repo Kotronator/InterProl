@@ -16,13 +16,20 @@ import java.util.Map;
  */
 public class FOLBCΑsk {
     
-    public FOLBCΑsk() {
+    ArrayList<HashMap<Variable,Term>> thetaAgregation = new ArrayList<HashMap<Variable,Term>>();
+    
+    public FOLBCΑsk() 
+    {
 
-	}
+    }
 
 	//
 	// START-InferenceProcedure
-	public InferenceResult ask(KnowledgeBase KB, Relation query) {
+    
+        //
+       
+        
+	public HashMap<Variable, Term> ask(KnowledgeBase KB, Relation query) {
 		// Assertions on the type queries this Inference procedure
 		// supports
 //		if (!(query instanceof AtomicSentence)) {
@@ -30,18 +37,23 @@ public class FOLBCΑsk {
 //					"Only Atomic Queries are supported.");
 //		}
 
-		List<Relation> goals = new ArrayList<Relation>();
+		
 		//goals.add(new Literal((AtomicSentence) query));
+//                goals.add(query);
+//              
+//		BCAskAnswerHandler ansHandler = new BCAskAnswerHandler();
+//
+//		List<List<ProofStepBwChGoal>> allProofSteps 
+                ArrayList<Relation> goals = new ArrayList<Relation>();
                 goals.add(query);
-
-		BCAskAnswerHandler ansHandler = new BCAskAnswerHandler();
-
-		List<List<ProofStepBwChGoal>> allProofSteps = folbcask(KB, ansHandler,
-				goals, new HashMap<Variable, Term>());
-
-		ansHandler.setAllProofSteps(allProofSteps);
-
-		return ansHandler;
+                ArrayList<HashMap<Variable, Term>> result = folbcask(KB,goals, new HashMap<Variable, Term>());
+                return null;
+//				goals, new HashMap<Variable, Term>());
+//              
+//		ansHandler.setAllProofSteps(allProofSteps);
+//
+//		return ansHandler;
+//   
 	}
 
 	// END-InferenceProcedure
@@ -59,16 +71,16 @@ public class FOLBCΑsk {
 	 *          theta, the current substitution, initially the empty substitution {}
 	 * </code>
 	 */
-	private List<List<ProofStepBwChGoal>> folbcask(KnowledgeBase KB,
-			BCAskAnswerHandler ansHandler, List<Relation> goals,
-			Map<Variable, Term> theta) {
-		List<List<ProofStepBwChGoal>> thisLevelProofSteps = new ArrayList<List<ProofStepBwChGoal>>();
+	private ArrayList<HashMap<Variable, Term>> folbcask(KnowledgeBase KB, ArrayList<Relation> goals, HashMap<Variable, Term> theta) {
+		//List<List<ProofStepBwChGoal>> thisLevelProofSteps = new ArrayList<List<ProofStepBwChGoal>>();
 		// local variables: answers, a set of substitutions, initially empty
 
 		// if goals is empty then return {theta}
 		if (goals.isEmpty()) {
-			thisLevelProofSteps.add(new ArrayList<ProofStepBwChGoal>());
-			return thisLevelProofSteps;
+			//thisLevelProofSteps.add(new ArrayList<ProofStepBwChGoal>());
+                    
+                    thetaAgregation.add(theta);
+                    return thetaAgregation;
 		}
 
 		// qDelta <- SUBST(theta, FIRST(goals))
