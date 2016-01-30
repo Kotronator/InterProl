@@ -33,6 +33,14 @@ public class Constant extends Term
         return false;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if(! (o instanceof Constant))
+            return false;
+        Constant var = (Constant) o;
+        return nameOfConstnat.equals(var.nameOfConstnat);
+    }
+
         
 
 }

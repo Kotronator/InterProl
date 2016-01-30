@@ -8,4 +8,8 @@ public abstract class Term
         
         public abstract boolean isCompound();
 
+   
+        public abstract boolean equals(Object o);
+        
+        
 }

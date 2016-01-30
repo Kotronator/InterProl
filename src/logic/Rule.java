@@ -36,7 +36,12 @@ public class Rule
         return message;
     }
 	
-	
+    ArrayList<Literal> getLiterals()
+    {
+        
+        return null;
+    }
+    
 	
 	
 	

@@ -33,4 +33,13 @@ public class Variable extends Term
         return false;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if(! (o instanceof Variable))
+            return false;
+        Variable var = (Variable) o;
+        return nameOfVariable.equals(var.nameOfVariable)&&id==var.id;
+    }
+    
+
 }

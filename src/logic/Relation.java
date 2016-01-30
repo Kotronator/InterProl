@@ -57,8 +57,18 @@ public class Relation extends Term
     public boolean isCompound() {
         return true;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(! (o instanceof Relation))
+            return false;
+        Relation rel = (Relation) o;
+        if(!rel.nameOfRelation.equals(nameOfRelation))
+            return false;
+        return arguments.equals(rel.arguments);
+    }
 	
 	
-	
+    
 
 }
