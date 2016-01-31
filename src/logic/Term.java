@@ -8,8 +8,12 @@ public abstract class Term
         
         public abstract boolean isCompound();
 
-   
+        @Override
         public abstract boolean equals(Object o);
+        @Override
+        public abstract Object clone();
+        
+        
         
         
 }

@@ -67,6 +67,18 @@ public class Relation extends Term
             return false;
         return arguments.equals(rel.arguments);
     }
+
+    @Override
+    public Object clone() 
+    {
+        ArrayList<Term> copy = new ArrayList<Term>();
+        for (Term term : arguments) 
+        {
+            copy.add((Term)term.clone());
+            
+        }
+        return new Relation(nameOfRelation, copy);
+    }
 	
 	
     

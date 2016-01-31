@@ -41,6 +41,12 @@ public class Constant extends Term
         return nameOfConstnat.equals(var.nameOfConstnat);
     }
 
+    @Override
+    public Object clone() 
+    {
+        return new Constant(nameOfConstnat);
+    }
+
         
 
 }

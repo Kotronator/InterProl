@@ -152,7 +152,8 @@ public class PrologParser
                         if(argumentList.size()>0)
                         {
                           Relation fact= new Relation(factName,argumentList);
-                          interprol.InterProl.kb.add(fact);
+                          Rule rule = new Rule(fact, null);
+                          interprol.InterProl.kb.add(rule);
                         }else
                         {
                             JOptionPane.showMessageDialog(null, "Fact with no arguments", "Error", JOptionPane.ERROR_MESSAGE);

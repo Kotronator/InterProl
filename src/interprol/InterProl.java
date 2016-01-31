@@ -10,6 +10,7 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 import logic.CNFSubClause;
 import logic.Constant;
+//import logic.Constant;
 import logic.KnowledgeBase;
 import logic.Literal;
 import logic.Relation;

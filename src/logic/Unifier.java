@@ -5,14 +5,9 @@
  */
 package logic;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-/**
- *
- * @author tsipiripo
- */
 
 
 /**
@@ -61,8 +56,8 @@ public class Unifier {
 
 	}
 
-	public Map<Variable, Term> unify(Term x, Term y) {
-		return unify(x, y, new LinkedHashMap<Variable, Term>());
+	public HashMap<Variable, Term> unify(Term x, Term y) {
+		return unify(x, y, new HashMap<Variable, Term>());
 	}
 
 	/**
@@ -77,8 +72,8 @@ public class Unifier {
 	 *         of variable/term pairs) or null which is used to indicate a
 	 *         failure to unify.
 	 */
-	public Map<Variable, Term> unify(Term x, Term y,
-			Map<Variable, Term> theta) {
+	public HashMap<Variable, Term> unify(Term x, Term y,
+			HashMap<Variable, Term> theta) {
 		// if theta = failure then return failure
 		if (theta == null) {
 			return null;
@@ -103,8 +98,8 @@ public class Unifier {
 
 	// else if LIST?(x) and LIST?(y) then
 	// return UNIFY(x.REST, y.REST, UNIFY(x.FIRST, y.FIRST, theta))
-	public Map<Variable, Term> unify(List<? extends Term> x,
-			List<? extends Term> y, Map<Variable, Term> theta) {
+	public HashMap<Variable, Term> unify(List<? extends Term> x,
+			List<? extends Term> y, HashMap<Variable, Term> theta) {
 		if (theta == null) {
 			return null;
 		} else if (x.size() != y.size()) {
@@ -129,7 +124,7 @@ public class Unifier {
 	// behavior, as is the case with Prolog.
 	// Note: Implementation is based on unify-bug.pdf document by Peter Norvig:
 	// http://norvig.com/unify-bug.pdf
-	protected boolean occurCheck(Map<Variable, Term> theta, Variable var,
+	protected boolean occurCheck(HashMap<Variable, Term> theta, Variable var,
 			Term x) {
 		// ((equal var x) t)
 		if (var.equals(x)) {
@@ -163,8 +158,8 @@ public class Unifier {
 	 *       theta, the substitution built up so far
 	 * </code>
 	 */
-	private Map<Variable, Term> unifyVar(Variable var, Term x,
-			Map<Variable, Term> theta) {
+	private HashMap<Variable, Term> unifyVar(Variable var, Term x,
+			HashMap<Variable, Term> theta) {
 
 		if (!Term.class.isInstance(x)) {
 			return null;
@@ -184,8 +179,8 @@ public class Unifier {
 		}
 	}
 
-	private Map<Variable, Term> unifyOps(String x, String y,
-			Map<Variable, Term> theta) {
+	private HashMap<Variable, Term> unifyOps(String x, String y,
+			HashMap<Variable, Term> theta) {
 		if (theta == null) {
 			return null;
 		} else if (x.equals(y)) {
@@ -214,7 +209,7 @@ public class Unifier {
 	// See:
 	// http://logic.stanford.edu/classes/cs157/2008/miscellaneous/faq.html#jump165
 	// for need for this.
-	private Map<Variable, Term> cascadeSubstitution(Map<Variable, Term> theta, Variable var,
+	private HashMap<Variable, Term> cascadeSubstitution(HashMap<Variable, Term> theta, Variable var,
 			Term x) {
 		theta.put(var, x);
 //		for (Variable v : theta.keySet()) {

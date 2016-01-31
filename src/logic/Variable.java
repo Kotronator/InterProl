@@ -9,6 +9,13 @@ public class Variable extends Term
 	{
 		nameOfVariable = name;
 	}
+        
+        public Variable(String name, int id)
+	{
+		nameOfVariable = name;
+                this.id = id;
+	}
+        
 
 	@Override
 	public String getName() {
@@ -39,6 +46,12 @@ public class Variable extends Term
             return false;
         Variable var = (Variable) o;
         return nameOfVariable.equals(var.nameOfVariable)&&id==var.id;
+    }
+
+    @Override
+    public Object clone() 
+    {
+        return new Variable(nameOfVariable, id);
     }
     
 

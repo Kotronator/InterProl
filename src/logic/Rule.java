@@ -12,6 +12,8 @@ public class Rule
 	{
 		this.leftPart = leftPart;
 		this.rightPart = rightPart;
+                if(rightPart==null)
+                    this.rightPart=new ArrayList<Relation>();
 	}
 	
 	public Relation getLeftPart()
@@ -29,6 +31,7 @@ public class Rule
         String message="";
         message+=leftPart.toString();
         message+=":-";
+        
         for (Relation rightPart1 : rightPart) {
              message+=rightPart1.toString();
         }
