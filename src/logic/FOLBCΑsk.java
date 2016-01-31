@@ -18,6 +18,7 @@ import java.util.Map;
 public class FOLBCΑsk {
     
     ArrayList<HashMap<Variable,Term>> thetaAgregation = new ArrayList<HashMap<Variable,Term>>();
+    private int counter;
     
     public FOLBCΑsk() 
     {
@@ -66,6 +67,7 @@ public class FOLBCΑsk {
                 return answers;
             }
             Relation qTonos = subst(theta,goals.get(0));
+            goals.remove(0);
             for (Rule q : KB.rules) 
             {
                 
@@ -75,15 +77,16 @@ public class FOLBCΑsk {
                 if(thetaTonos != null)
                 {
                     ArrayList<Relation> newGoals = new ArrayList<Relation>();
-                    goals.remove(0);
+                    //edw goals.remove(0);
                     for (int i = q.getRightPart().size()-1; i >= 0; i--) 
                     {
-                        goals.add(0, q.getRightPart().get(i));
+                        newGoals.add(0, q.getRightPart().get(i));
                         
                     }
                     
                     
                     HashMap<Variable, Term> composition = compose(thetaTonos, theta);
+                    newGoals.addAll(goals);
                     answers.addAll(folbcask(KB, newGoals, composition));
                 }
             }

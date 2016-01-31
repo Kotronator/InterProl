@@ -6,8 +6,15 @@
 package window;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import logic.Constant;
+import logic.FOLBCΑsk;
+import logic.Relation;
+import logic.Term;
+import logic.Variable;
 import parser.PrologParser;
 
 /**
@@ -33,8 +40,7 @@ public class MainWindow extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         promptTextArea = new javax.swing.JTextArea();
@@ -49,16 +55,19 @@ public class MainWindow extends javax.swing.JFrame
         jScrollPane1.setViewportView(promptTextArea);
 
         loadButton.setText("Load");
-        loadButton.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        loadButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 loadButtonMouseClicked(evt);
             }
         });
         jMenuBar1.add(loadButton);
 
         jMenu2.setText("Run");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -95,6 +104,28 @@ public class MainWindow extends javax.swing.JFrame
         
         
     }//GEN-LAST:event_loadButtonMouseClicked
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        Relation query = new Relation("father_child");
+       // Variable var1 = new Variable("tom");
+        //Variable var2 = new Variable("sally");
+        Constant c1=new Constant("tom");
+        Constant c2=new Constant("sally");
+        query.addArgument(c1);
+        query.addArgument(c2);
+        
+        FOLBCΑsk fol = new FOLBCΑsk();
+        
+        ArrayList<HashMap<Variable, Term>> answers = fol.ask(interprol.InterProl.kb, query);
+        
+        for (HashMap<Variable, Term> answer : answers) 
+        {
+            System.out.println(answer.toString());
+            
+        }
+        
+        System.out.println("End");
+    }//GEN-LAST:event_jMenu2MouseClicked
 
     public static void printlnToPrompt(String message)
     {

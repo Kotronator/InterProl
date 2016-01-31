@@ -5,6 +5,7 @@ public class Variable extends Term
 	String nameOfVariable;
 	int id = -1;
 	
+        
 	public Variable(String name)
 	{
 		nameOfVariable = name;
