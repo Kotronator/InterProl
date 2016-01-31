@@ -58,9 +58,10 @@ public class FOLBCΑsk {
 	}
         ArrayList<HashMap<Variable, Term>>  folbcask(KnowledgeBase KB,  ArrayList<Relation> goals, HashMap<Variable, Term> theta)
         {
+            ArrayList<HashMap<Variable, Term>> answers = new ArrayList<HashMap<Variable, Term>>();
+            
             if(goals.size()==0)
             {
-                ArrayList<HashMap<Variable, Term>> answers = new ArrayList<HashMap<Variable, Term>>();
                 answers.add(theta);
                 return answers;
             }
@@ -81,13 +82,13 @@ public class FOLBCΑsk {
                         
                     }
                     
-                    ArrayList<HashMap<Variable, Term>> answers;
-                    HashMap<Variable, Term> composition = compose(thetaTonos, theta);
                     
+                    HashMap<Variable, Term> composition = compose(thetaTonos, theta);
+                    answers.addAll(folbcask(KB, newGoals, composition));
                 }
             }
             
-            return null;
+            return answers;
         }
         
         public static Relation subst(HashMap<Variable, Term> answers, Relation firstGoal) 
@@ -112,25 +113,30 @@ public class FOLBCΑsk {
         
         private HashMap<Variable, Term> compose(HashMap<Variable, Term> thetaTonos, HashMap<Variable, Term> theta) 
         {
+            HashMap<Variable, Term> composed = new HashMap<Variable, Term>();
             
             for (Map.Entry<Variable, Term> entrySet : theta.entrySet()) 
             {
                 Variable key = entrySet.getKey();
                 Term value = entrySet.getValue();
                 
-                for (Map.Entry<Variable, Term> entrySet1 : thetaTonos.entrySet()) 
+                for (Map.Entry<Variable, Term> entrySet2 : thetaTonos.entrySet()) 
                 {
-                    Variable key2 = entrySet1.getKey();
-                    Term value2 = entrySet1.getValue();
+                    Variable key2 = entrySet2.getKey();
+                    Term value2 = entrySet2.getValue();
                     
                     if(value.equals(key2))
-                        value = value2;
+                        composed.put(key,value2);
+                    
+                    
                     
                 }
                 
             }
             
-            return null;
+            composed.putAll(thetaTonos);
+            
+            return composed;
         }
         
         
